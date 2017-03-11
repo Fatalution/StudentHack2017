@@ -85,13 +85,34 @@ public class Cat
       newGender = false;
 
     // generates x and y between the two parent cats
-    int  newX = Math.min(x, otherCat.getX()) + (int)(Math.random() * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
-    int newY = Math.min(y, otherCat.getY()) + (int)(Math.random() * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
+    int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
+       * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
+
+    int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
+       * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
 
     // returns new cat
     return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
   }
 
+  // method to find distance between two points on the map
+  public double distanceToCat(Cat otherCat)
+  {
+    double distance = 0;
+    int distanceA = x - otherCat.x;
+    int distanceB = y - otherCat.y;
+    distance = Math.sqrt(Math.pow(distanceA, 2) + Math.pow(distanceB, 2));
+    return distance;
+  }
+
+  // method to check if breeding is possible
+  public boolean breedingPossible(Cat otherCat)
+  {
+    if (distanceToCat(otherCat) > 3)
+      return false;
+    else
+      return true;
+  }
   // method for adding a year for a cat
   public void addYear()
   {
@@ -123,7 +144,6 @@ public class Cat
         killCat(this);
     }// else
   }// fightWith
-
 
   private int getX()
   {
