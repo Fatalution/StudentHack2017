@@ -22,7 +22,7 @@ public class Game
     catArray[0] = new Cat(0, 1, null, true, map, 1, 1);
     catArray[1] = new Cat(1, 1, null, true, map, 1, 3);
     System.out.println(map);
-    window = new GameGUI();
+    window = new GameGUI(this);
     window.setVisible(true);
   }
 
@@ -96,5 +96,9 @@ public class Game
       catArray[index] = catArray[index + 1];
     }
     numberOfCats --;
+  }
+
+  public Cat[] getCats(){
+    return catArray;
   }
 }

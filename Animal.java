@@ -1,4 +1,4 @@
-import javax.swing.*;
+import java.awt.Image;
 public class Animal
 {
   // int to track the age of a cat

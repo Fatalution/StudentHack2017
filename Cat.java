@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 public class Cat extends Animal
 {
  
@@ -32,9 +34,9 @@ public class Cat extends Animal
     {
  
       // generates x and y between the two parent cats
-      int newX =
+     // int newX = 
  
-      int newY =
+     // int newY =
  
  
       // returns new cat
@@ -94,4 +96,8 @@ public class Cat extends Animal
     getMap().removeObject(catToKill.getX(), catToKill.getY());
   }//killCat
  
+  public Image getImage()
+  {
+    return image;
+  }
 }// class

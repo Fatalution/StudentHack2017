@@ -7,11 +7,12 @@ import javax.imageio.ImageIO;
 public class GameGUI extends JFrame
 {
   Game game;
-  private Image cat;
-  JLabel[] cat = new JLabel[0];
+  private static Image cat;
+  private JPanel gamePanel;
 
-  public GameGUI()
+  public GameGUI(Game requiredGame)
   {
+    game = requiredGame;
     setTitle("Cat spawner");
     super.setPreferredSize(new Dimension(500,500));  
     setResizable(false);
@@ -19,7 +20,7 @@ public class GameGUI extends JFrame
     setBackground(Color.BLACK);
     Container contents = getContentPane();
     contents.setLayout(new BorderLayout());
-    JPanel gamePanel = new JPanel(null);
+    gamePanel = new JPanel(null);
     gamePanel.setLayout(null);
     gamePanel.setBounds(0,0,500,500);
     contents.add(gamePanel, BorderLayout.CENTER);
@@ -44,13 +45,19 @@ public class GameGUI extends JFrame
     pack();
   }
 
-  public Image catImage()
+  public static Image catImage()
   {
     return cat;
   }
 
   public void update()
   {
-    
+    Cat[] cats = game.getCats();
+    for (Cat cat : cats)
+    {
+      JLabel catLabel = new JLabel(new ImageIcon(cat.getImage()));
+      catLabel.setBounds(cat.getX(), cat.getY(), 100, 100);
+      gamePanel.add(catLabel);
+    }
   }
 }
