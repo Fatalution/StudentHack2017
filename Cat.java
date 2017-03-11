@@ -29,22 +29,7 @@ public class Cat extends Animal
     else
       newGender = false;
 
-    // check if breeding is possible using the boolean value
-    if (breedingPossible(otherCat))
-    {
-
-      // generates x and y between the two parent cats
-      int newX = 0;
-
-     int newY = 0;
-
-
-      // returns new cat
-      return new Cat(newId, 0, newGender, getMap(), newX, newY);
-    }
-    else
-      return null;
-
+      return new Cat(givenId, 1, getMap());
   }
 
   // method to find distance between two points on the map
