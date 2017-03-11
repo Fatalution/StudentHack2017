@@ -21,11 +21,28 @@ public class Cat
     strength = calculateStrength();
   }// constructor
 
+  // method to calculate strength
   private int calculateStrength()
   {
-    
+    // variable to calculate strength
+    int tempStrength = 0;
+
+    if(isMale)
+      tempStrength = 100;
+    else
+      tempStrength = 50;
+
+    tempStrength -= age * 5;
+
+    return tempStrength;
   }// calculateStrength
 
+  private int getStrength()
+  {
+    return strength;
+  }// getStrength
+
+  // method for breeding two cats
   public Cat breedWith(Cat otherCat, int givenId)
   {
     int newId = givenId;
@@ -47,20 +64,30 @@ public class Cat
     age++;
   }// addYear
 
+  // method for getting the gender of a cat
   private boolean checkIfMale()
   {
     return isMale;
   }// getGender
 
-  // toString method
-  public String toString()
-  {
-    return "Cat (" + "id = " + id + ", type = " + type + ", age = " + age + ")";
-  }// toString
-
+  // method for fighting with other cats, sets dead cat to null
   public void fightWith(Cat otherCat)
   {
-
+    // if other cat's strength is greater, kill this cat
+    // or kill other cat if this one is stronger
+    if(otherCat.getStrength() > strength)
+      killCat(otherCat);
+    else if(otherCat.getStrength < strength)
+      killCat(this);
+    else
+    {
+      // if the strength values are even, choose at random
+      // which cat to kill
+      if(Math.random() < 0.5)
+        killCat(otherCat);
+      else
+        killCat(this);
+    }// else
   }// fightWith
 
   private void killCat(Cat catToKill)
@@ -68,4 +95,10 @@ public class Cat
     catToKill = null;
   }//killCat
 
-}
+  // toString method
+  public String toString()
+  {
+    return "Cat (" + "id = " + id + ", type = " + type + ", age = " + age + ")";
+  }// toString
+
+}// class
