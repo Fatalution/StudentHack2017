@@ -10,16 +10,40 @@ public class Cat
   private final boolean isMale;
   // integer to hold the strength of a cat
   private int strength;
+  // integers to hold x and y variables of the cat
+  private final int x, y;
+  // the map that the cat is on
+  private final Map map;
 
   // constructor for initialising variables
-  public Cat(int givenId, int givenAge, String givenType, boolean givenGender)
+  public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
+                                                                  Map givenMap)
   {
     isMale = givenGender;
     id = givenId;
     age = givenAge;
     type = givenType;
     strength = calculateStrength();
+    map = givenMap;
+    x = (int) (Math.random * map.getSize());
+    y = (int) (Math.random * map.getSize());
+
   }// constructor
+
+  public Cat()
+  {
+
+  }
+
+  private int generateX()
+  {
+
+  }// generateX
+
+  private int generateY()
+  {
+
+  }// generateY
 
   // method to calculate strength
   private int calculateStrength()
@@ -43,7 +67,8 @@ public class Cat
   }// getStrength
 
   // method for breeding two cats
-  public Cat breedWith(Cat otherCat, int givenId)
+  // returns new cat
+  public Cat breedWith(Cat otherCat, int givenId, Map givenMap)
   {
     int newId = givenId;
     boolean newGender;
@@ -77,7 +102,7 @@ public class Cat
     // or kill other cat if this one is stronger
     if(otherCat.getStrength() > strength)
       killCat(otherCat);
-    else if(otherCat.getStrength < strength)
+    else if(otherCat.getStrength() < strength)
       killCat(this);
     else
     {
@@ -89,6 +114,11 @@ public class Cat
         killCat(this);
     }// else
   }// fightWith
+
+  public int getAge()
+  {
+    return age;
+  }// getAge
 
   private void killCat(Cat catToKill)
   {
