@@ -12,6 +12,60 @@ public class Cat extends Animal
     super(givenId, givenAge, givenGender, givenMap, givenX, givenY);
   }// constructor
 
+  // method for breeding two cats
+  // returns new cat
+  public Cat breedWith(Cat otherCat, int givenId)
+  {
+    // sets new id to given one
+    int newId = givenId;
+    // variable to store new gender of new cat
+    boolean newGender;
+
+    // gender is 50/50 male or female
+    if(Math.random() < 0.5)
+      newGender = true;
+    else
+      newGender = false;
+
+    // check if breeding is possible using the boolean value
+    if (breedingPossible(otherCat))
+    {
+      // generates x and y between the two parent cats
+      int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
+         * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
+
+      int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
+         * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
+
+      // returns new cat
+      return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
+    }
+    else
+      return null;
+
+  }
+
+  // method to find distance between two points on the map
+  // pythagoras theorem
+  public double distanceToCat(Cat otherCat)
+  {
+    double distance = 0;
+    int distanceA = x - otherCat.x;
+    int distanceB = y - otherCat.y;
+    distance = Math.sqrt(Math.pow(distanceA, 2) + Math.pow(distanceB, 2));
+    return distance;
+  }
+
+  // method to check if breeding is possible
+  // if distance between cats is more than 3 - it is not possible
+  public boolean breedingPossible(Cat otherCat)
+  {
+    if (distanceToCat(otherCat) > 3)
+      return false;
+    else
+      return true;
+  }
+
   // method for fighting with other cats, sets dead cat to null
   public void fightWith(Cat otherCat)
   {
@@ -32,7 +86,7 @@ public class Cat extends Animal
     }// else
   }// fightWith
 
-  // method for killing another cat
+
   private void killCat(Cat catToKill)
   {
     catToKill = null;
