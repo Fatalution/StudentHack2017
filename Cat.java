@@ -71,25 +71,24 @@ public class Cat extends Animal
     // if other cat's strength is greater, kill this cat
     // or kill other cat if this one is stronger
     if(otherCat.getStrength() > getStrength())
-      killCat(otherCat);
+      killCat();
     else if(otherCat.getStrength() < getStrength())
-      killCat(this);
+      killCat();
     else
     {
       // if the strength values are even, choose at random
       // which cat to kill
       if(Math.random() < 0.5)
-        killCat(otherCat);
+        killCat();
       else
-        killCat(this);
+        killCat();
     }// else
   }// fightWith
 
 
-  private void killCat(Cat catToKill)
+  public void killCat()
   {
-    catToKill = null;
-    getMap().removeObject(catToKill.getX(), catToKill.getY());
-  }//killCat
+    getMap().removeObject(getX(), getY());
+  }//killCats
 
 }// class

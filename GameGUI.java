@@ -14,7 +14,7 @@ public class GameGUI extends JFrame
   {
     game = requiredGame;
     setTitle("Cat spawner");
-    super.setPreferredSize(new Dimension(500,500));
+    super.setPreferredSize(new Dimension(1500,1500));
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBackground(Color.BLACK);
@@ -23,7 +23,9 @@ public class GameGUI extends JFrame
     gamePanel = new JPanel(null);
     gamePanel.setLayout(null);
     gamePanel.setBounds(0,0,500,500);
+    gamePanel.setBackground(Color.BLACK);
     contents.add(gamePanel, BorderLayout.CENTER);
+
     BufferedImage tempCat = null;
     try {
       tempCat = ImageIO.read(new File("cat.png"));
@@ -32,16 +34,6 @@ public class GameGUI extends JFrame
     }
     cat =  tempCat.getScaledInstance(100, 50, Image.SCALE_DEFAULT);
 
-    /*
-    for (int i = 1; i < 10; i++)
-    {
-      int x = i*10;
-      JLabel temp =new JLabel(new ImageIcon(image));
-      temp.setBounds(x,x,100,100);
-      gamePanel.add(temp);
-
-    }
-    */
     pack();
   }
 
@@ -50,30 +42,26 @@ public class GameGUI extends JFrame
     return cat;
   }
 
-
   private JLabel[] toDelete = new JLabel[0];
   public void update()
   {
-    /*Cat[] cats = game.getCats();
-    for (Cat cat : cats)
-    {
-      JLabel catLabel = new JLabel(new ImageIcon(cat.getImage()));
-      catLabel.setBounds(cat.getX(), cat.getY(), 100, 100);
-      gamePanel.add(catLabel);
-    }
-    */
 
     Map map = game.getMap();
-
+ int size = 1500/map.getSize();
     int[][] mapArray = map.getMapArray();
 
     int mapSize = map.getSize();
 
     for(JLabel label : toDelete)
     {
+      label.setVisible(false);
       gamePanel.remove(label);
-      label = null;
+      gamePanel.revalidate();
+      gamePanel.repaint();
+
     }
+    toDelete = new JLabel[0];
+
 
     for(int y=0; y < mapSize; y++)
       for(int x = 0; x < mapSize; x++)
@@ -81,15 +69,20 @@ public class GameGUI extends JFrame
         if (mapArray[x][y] == 1)
         {
           JLabel catLabel = new JLabel(new ImageIcon(catImage()));
-          catLabel.setBounds(x*5, y*5, 100, 100);
+          catLabel.setBounds(x*30, y*30, 100, 100);
           gamePanel.add(catLabel);
+
 
           JLabel[] temp = new JLabel[toDelete.length + 1];
           for(int i = 0; i < toDelete.length; i++)
             temp[i] = toDelete[i];
           temp[toDelete.length] = catLabel;
           toDelete = temp;
+
         }
       }
+      revalidate();
+      repaint();
+
   }
 }
