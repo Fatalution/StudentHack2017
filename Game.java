@@ -18,6 +18,9 @@ public class Game
   {
     while(true)
     {
+      if (numberOfCats == catArray.length)
+        break;
+
       if(Math.random() < 0.2 && numberOfCats > 2)
       {
         makeKill(catArray);
