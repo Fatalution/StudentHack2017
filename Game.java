@@ -18,6 +18,7 @@ public class Game
   {
     while(true)
     {
+      // fixing the ArrayIndexOutOfBoundsException error
       if (numberOfCats == catArray.length)
         break;
 
@@ -35,32 +36,32 @@ public class Game
 
   private void makeBreeding(Cat[] catArray)
   {
-    int firstCat, secondCat;
+    int firstCatID, secondCatID;
     //getting ids for first and second cats
-    firstCat = (int) (Math.random() * numberOfCats);
-    secondCat = firstCat;
+    firstCatID = (int) (Math.random() * numberOfCats);
+    secondCatID = firstCatID;
 
-    while(secondCat == firstCat)
+    while(secondCatID == firstCatID)
     {
-      secondCat = (int) (Math.random() * numberOfCats);
+      secondCatID = (int) (Math.random() * numberOfCats);
     }
 
     //getting new cat
-    catArray[numberOfCats] = catArray[firstCat].breedWith(catArray[secondCat], numberOfCats);
+    catArray[numberOfCats] = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
     numberOfCats++;
 
     //printing breeding info
-    System.out.println("Cat " + firstCat + " with " + secondCat + " equals " + numberOfCats);
+    System.out.println("Cat " + firstCatID + " with " + secondCatID + " equals " + numberOfCats);
   }
 
   private void makeKill(Cat[] catArray)
   {
-    int randomCat = (int) (Math.random() * numberOfCats);
-    System.out.println("Cat " + randomCat + " has died");
+    int randomCatID = (int) (Math.random() * numberOfCats);
+    System.out.println("Cat " + randomCatID + " has died");
 
-    catArray[randomCat] = null;
+    catArray[randomCatID] = null;
 
-    for(int index = randomCat; index < numberOfCats; index++)
+    for(int index = randomCatID; index < numberOfCats; index++)
     {
       catArray[index] = catArray[index + 1];
     }
