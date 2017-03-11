@@ -5,7 +5,7 @@ public class Map
   // integer to hold the size of a map
   private final int size;
   // String array to represent the map
-  private boolean[][] map;
+  private int[][] map;
 
   // constructor for maps
   public Map(int givenSize)
@@ -19,13 +19,13 @@ public class Map
   {
     for(int x = 0; x < size; x++)
       for(int y = 0; y < size; y++)
-        map[x][y] = false;
+        map[x][y] = 0;
   }
 
   // sets the map coordinates of new object to false
-  public void addObject(int x, int y)
+  public void addCat(int x, int y)
   {
-    map[x][y] = true;
+    map[x][y] = 1;
   }// addObject
 
   public String toString()
@@ -36,7 +36,7 @@ public class Map
     {
       for(int x = 0; x < size; x++)
       {
-        if(map[x][y])
+        if(map[x][y] > 0)
           mapString += "#";
         else
           mapString += " ";
@@ -48,5 +48,10 @@ public class Map
 
     return mapString;
   }// toString
+
+  public int getSize()
+  {
+    return size;
+  }
 
 }// class
