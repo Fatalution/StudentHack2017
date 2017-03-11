@@ -8,6 +8,8 @@ public class Cat
   private final int id;
   // class constants to determine cat's gender
   private final boolean isMale;
+  // integer to hold the strength of a cat
+  private int strength;
 
   // constructor for initialising variables
   private Cat(int givenId, int givenAge, String givenType, boolean givenGender)
@@ -16,7 +18,28 @@ public class Cat
     id = givenId;
     age = givenAge;
     type = givenType;
+    strength = calculateStrength();
   }// constructor
+
+  private int calculateStrength()
+  {
+
+  }// calculateStrength
+
+  public Cat breedWith(Cat otherCat, int givenId)
+  {
+    int newId = givenId;
+    boolean newGender;
+
+    if(Math.random() < 0.5)
+      newGender = true;
+    else
+      newGender = false;
+
+    int newStrength = 1;
+
+    return new Cat(newId, 0, "Siberian", newGender);
+  }
 
   // method for adding a year for a cat
   public void addYear()
@@ -32,12 +55,12 @@ public class Cat
   // toString method
   public String toString()
   {
-    return "Cat (" + type + ", " + age + ")";
+    return "Cat (" + "id = " + id + ", type = " + type + ", age = " + age + ")";
   }// toString
 
   public void fightWith(Cat otherCat)
   {
-    if(otherCat)
+
   }// fightWith
 
   private void killCat(Cat catToKill)
