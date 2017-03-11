@@ -4,9 +4,10 @@ public class Main
   {
     Cat[] catArray = new Cat[100];
 
-    catArray[0] = new Cat(0, 1, null, boolean true);
-    catArray[1] = new Cat(1, 1, null, boolean true);
+    catArray[0] = new Cat(0, 1, null, true);
+    catArray[1] = new Cat(1, 1, null, true);
 
-    
+
   }
+  // DIFFERENCE
 }
