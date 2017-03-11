@@ -8,9 +8,10 @@ public class Game
 
   public Game()
   {
+    Map map = new Map(12);
     //creating first 2 cats
-    catArray[0] = new Cat(0, 1, null, true);
-    catArray[1] = new Cat(1, 1, null, true);
+    catArray[0] = new Cat(0, 1, null, true, map);
+    catArray[1] = new Cat(1, 1, null, true, map);
   }
 
   //main game loop

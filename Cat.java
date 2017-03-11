@@ -25,25 +25,24 @@ public class Cat
     type = givenType;
     strength = calculateStrength();
     map = givenMap;
-    x = (int) (Math.random * map.getSize());
-    y = (int) (Math.random * map.getSize());
+    x = (int) (Math.random() * map.getSize());
+    y = (int) (Math.random() * map.getSize());
 
   }// constructor
 
-  public Cat()
+  public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
+                                        Map givenMap, int givenX, int givenY)
   {
+    isMale = givenGender;
+    id = givenId;
+    age = givenAge;
+    type = givenType;
+    strength = calculateStrength();
+    map = givenMap;
+    x = givenX;
+    y = givenY;
 
-  }
-
-  private int generateX()
-  {
-
-  }// generateX
-
-  private int generateY()
-  {
-
-  }// generateY
+  }// constructor
 
   // method to calculate strength
   private int calculateStrength()
@@ -68,7 +67,7 @@ public class Cat
 
   // method for breeding two cats
   // returns new cat
-  public Cat breedWith(Cat otherCat, int givenId, Map givenMap)
+  public Cat breedWith(Cat otherCat, int givenId)
   {
     int newId = givenId;
     boolean newGender;
@@ -78,9 +77,11 @@ public class Cat
     else
       newGender = false;
 
-    int newStrength = 1;
+    int  newX = (int) (Math.random() * Math.max(x, otherCat.getX()));
+    int newY = (int) (Math.random() * Math.max(y, otherCat.getY()));
 
-    return new Cat(newId, 0, "Siberian", newGender);
+
+    return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
   }
 
   // method for adding a year for a cat
@@ -115,10 +116,16 @@ public class Cat
     }// else
   }// fightWith
 
-  public int getAge()
+
+  private int getX()
   {
-    return age;
-  }// getAge
+    return x;
+  }
+
+  private int getY()
+  {
+    return y;
+  }
 
   private void killCat(Cat catToKill)
   {

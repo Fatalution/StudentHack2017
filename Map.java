@@ -17,15 +17,17 @@ public class Map
   // initialises map array
   private void initialiseMap()
   {
+    map = new int[size][size];
+
     for(int x = 0; x < size; x++)
       for(int y = 0; y < size; y++)
         map[x][y] = 0;
   }
 
   // sets the map coordinates of new object to false
-  public void addCat(int x, int y)
+  public void addObject(int x, int y, int givenId)
   {
-    map[x][y] = 1;
+    map[x][y] = givenId;
   }// addObject
 
   public String toString()
@@ -37,7 +39,7 @@ public class Map
       for(int x = 0; x < size; x++)
       {
         if(map[x][y] > 0)
-          mapString += "#";
+          mapString += map[x][y];
         else
           mapString += " ";
       }// for
