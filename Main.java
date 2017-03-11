@@ -6,19 +6,23 @@ public class Main
 
     catArray[0] = new Cat(0, 1, null, true);
     catArray[1] = new Cat(1, 1, null, true);
-    numberOfCats = 2;
+    int numberOfCats = 2;
+
+    int firstCat, secondCat;
 
     while(true)
     {
       //getting ids for first and second cats
       firstCat = (int) (Math.random() * numberOfCats);
-      while(secondCat != firstCat)
+      secondCat = firstCat;
+
+      while(secondCat == firstCat)
       {
         secondCat = (int) (Math.random() * numberOfCats);
       }
 
       //getting new cat
-      catArray[numberOfCats] = firstCat.breedCat(catArray[firstCat], catArray[secondCat]);
+      catArray[numberOfCats] = catArray[firstCat].breedWith(catArray[secondCat], numberOfCats);
       numberOfCats++;
 
       //printing breeding info
