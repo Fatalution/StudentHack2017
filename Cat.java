@@ -1,117 +1,25 @@
-public class Cat
+public class Cat extends Animal
 {
-  // int to track the age of a cat
-  private int age = 0;
-  // string to store the type of a cat which is final
-  private final String type;
-  // variable for ID
-  private final int id;
-  // class constants to determine cat's gender
-  private final boolean isMale;
-  // integer to hold the strength of a cat
-  private int strength;
-  // integers to hold x and y variables of the cat
-  private final int x, y;
-  // the map that the cat is on
-  private final Map map;
 
-  // constructor for initialising variables
-  public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
-                                                                  Map givenMap)
+  public Cat(int givenId, int givenAge, boolean givenGender, Map givenMap)
   {
-    isMale = givenGender;
-    id = givenId;
-    age = givenAge;
-    type = givenType;
-    strength = calculateStrength();
-    map = givenMap;
-    x = (int) (Math.random() * map.getSize());
-    y = (int) (Math.random() * map.getSize());
+    super(givenId, givenAge, givenGender, givenMap);
+  }// constructor
 
-    map.addObject(x, y, 1);
-
-  }// constructor 1
-
-  public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
-                                        Map givenMap, int givenX, int givenY)
+  public Cat(int givenId, int givenAge, boolean givenGender,
+                                          Map givenMap, int givenX, int givenY)
   {
-    isMale = givenGender;
-    id = givenId;
-    age = givenAge;
-    type = givenType;
-    strength = calculateStrength();
-    map = givenMap;
-    x = givenX;
-    y = givenY;
-
-    map.addObject(x, y, 1);
-
-  }// constructor 2
-
-  // method to calculate strength
-  private int calculateStrength()
-  {
-    // variable to calculate strength
-    int tempStrength;
-
-    if(isMale)
-      tempStrength = 100;
-    else
-      tempStrength = 50;
-
-    tempStrength -= age * 5;
-
-    return tempStrength;
-  }// calculateStrength
-
-  private int getStrength()
-  {
-    return strength;
-  }// getStrength
-
-  // method for breeding two cats
-  // returns new cat
-  public Cat breedWith(Cat otherCat, int givenId)
-  {
-    // sets new id to given one
-    int newId = givenId;
-    // variable to store new gender of new cat
-    boolean newGender;
-
-    // gender is 50/50 male or female
-    if(Math.random() < 0.5)
-      newGender = true;
-    else
-      newGender = false;
-
-    // generates x and y between the two parent cats
-    int  newX = Math.min(x, otherCat.getX()) + (int)(Math.random() * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
-    int newY = Math.min(y, otherCat.getY()) + (int)(Math.random() * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
-
-    // returns new cat
-    return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
-  }
-
-  // method for adding a year for a cat
-  public void addYear()
-  {
-    age++;
-  }// addYear
-
-  // method for getting the gender of a cat
-  private boolean checkIfMale()
-  {
-    return isMale;
-  }// getGender
+    super(givenId, givenAge, givenGender, givenMap, givenX, givenY);
+  }// constructor
 
   // method for fighting with other cats, sets dead cat to null
   public void fightWith(Cat otherCat)
   {
     // if other cat's strength is greater, kill this cat
     // or kill other cat if this one is stronger
-    if(otherCat.getStrength() > strength)
+    if(otherCat.getStrength() > getStrength())
       killCat(otherCat);
-    else if(otherCat.getStrength() < strength)
+    else if(otherCat.getStrength() < getStrength())
       killCat(this);
     else
     {
@@ -124,26 +32,11 @@ public class Cat
     }// else
   }// fightWith
 
-
-  private int getX()
-  {
-    return x;
-  }
-
-  private int getY()
-  {
-    return y;
-  }
-
+  // method for killing another cat
   private void killCat(Cat catToKill)
   {
     catToKill = null;
+    getMap().removeObject(catToKill.getX(), catToKill.getY());
   }//killCat
-
-  // toString method
-  public String toString()
-  {
-    return "Cat (" + "id = " + id + ", type = " + type + ", age = " + age + ")";
-  }// toString
 
 }// class

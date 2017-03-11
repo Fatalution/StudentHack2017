@@ -30,8 +30,15 @@ public class Map
   // sets the map coordinates of new object to the id of an object
   public void addObject(int x, int y, int givenId)
   {
-    map[x][y] = givenId;
+    if(map[x][y] == EMPTY)
+      map[x][y] = givenId;
   }// addObject
+
+  // method for removing objects from map
+  public void removeObject(int x, int y)
+  {
+    map[x][y] = 0;
+  }// removeObject
 
   // toString method
   public String toString()
@@ -55,7 +62,7 @@ public class Map
     return mapString;
   }// toString
 
-  // accessor method
+  // accessor method to get the size of the map
   public int getSize()
   {
     return size;
