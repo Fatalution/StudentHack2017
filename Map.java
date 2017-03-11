@@ -30,7 +30,6 @@ public class Map
   // sets the map coordinates of new object to the id of an object
   public void addObject(int x, int y, int givenId)
   {
-    if(map[x][y] == EMPTY)
       map[x][y] = givenId;
   }// addObject
 
@@ -75,7 +74,7 @@ public class Map
 
   public int[][] getMapArray()
   {
-    return this.map;
+    return map;
   }
 
 }// class

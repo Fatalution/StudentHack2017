@@ -2,8 +2,6 @@ public class Animal
 {
   // int to track the age of a cat
   private int age = 0;
-  // variable for ID
-  private final int id;
   // class constants to determine cat's gender
   public final boolean isMale;
   // integer to hold the strength of a cat
@@ -14,14 +12,13 @@ public class Animal
   private final Map map;
 
   // constructor for initialising variables
-  public Animal(int givenId, int givenAge, Map givenMap)
+  public Animal(int givenAge, Map givenMap)
   {
     if(Math.random() < 0.5)
       isMale = true;
     else
       isMale = false;
 
-    id = givenId;
     age = givenAge;
     strength = calculateStrength();
     map = givenMap;
@@ -39,11 +36,10 @@ public class Animal
 
   }// constructor 1
 
-  public Animal(int givenId, int givenAge, boolean givenGender,
+  public Animal(int givenAge, boolean givenGender,
                                           Map givenMap, int givenX, int givenY)
   {
     isMale = givenGender;
-    id = givenId;
     age = givenAge;
     strength = calculateStrength();
     map = givenMap;
@@ -100,7 +96,7 @@ public class Animal
     }
 
     // returns new cat
-    return new Animal(givenId, 0, newGender, map, newX, newY);
+    return new Animal(0, newGender, map, newX, newY);
   }
 
   public void move()

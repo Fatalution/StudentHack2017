@@ -19,8 +19,8 @@ public class Game
   {
     map = new Map(20);
     //creating first 2 cats
-    catArray[0] = new Cat(0, 1, true, map, 1, 1);
-    catArray[1] = new Cat(1, 1, true, map, 1, 3);
+    catArray[0] = new Cat(1, true, map, 1, 1);
+    catArray[1] = new Cat(1, true, map, 1, 3);
     System.out.println(map);
     window = new GameGUI(this);
     window.setVisible(true);
@@ -72,7 +72,7 @@ public class Game
 
     // getting new cat
 
-    catArray[numberOfCats] = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
+    catArray[numberOfCats] = catArray[firstCatID].breedWith(catArray[secondCatID]);
     numberOfCats++;
 
     // printing out the number of cats

@@ -1,25 +1,21 @@
-import java.awt.Image;
-
 public class Cat extends Animal
 {
 
-  public Cat(int givenId, int givenAge, Map givenMap)
+  public Cat(int givenAge, Map givenMap)
   {
-    super(givenId, givenAge, givenMap);
+    super(givenAge, givenMap);
   }// constructor
 
-  public Cat(int givenId, int givenAge, boolean givenGender,
+  public Cat(int givenAge, boolean givenGender,
                                           Map givenMap, int givenX, int givenY)
   {
-    super(givenId, givenAge, givenGender, givenMap, givenX, givenY);
+    super(givenAge, givenGender, givenMap, givenX, givenY);
   }// constructor
 
   // method for breeding two cats
   // returns new cat
-  public Cat breedWith(Cat otherCat, int givenId)
+  public Cat breedWith(Cat otherCat)
   {
-    // sets new id to given one
-    int newId = givenId;
     // variable to store new gender of new cat
     boolean newGender;
 
@@ -29,26 +25,41 @@ public class Cat extends Animal
     else
       newGender = false;
 
-      return new Cat(givenId, 1, getMap());
+    // check if breeding is possible using the boolean value
+    if (breedingPossible(otherCat))
+    {
+      // generates x and y between the two parent cats
+
+
+      int newX = 0;
+
+      int newY = 0;
+
+
+      // returns new cat
+      return new Cat(0, newGender, getMap(), newX, newY);
+    }
+    else
+      return null;
+
   }
 
   // method to find distance between two points on the map
   // pythagoras theorem
-  public double distanceToCat(Cat otherCat)
+  private double distanceToCat(Cat otherCat)
   {
     double distance = 0;
-    int distanceA = getX() - otherCat.getX();
-    int distanceB = getY() - otherCat.getY();
+    int distanceA = Math.abs(getX() - otherCat.getX());
+    int distanceB = Math.abs(getY() - otherCat.getY());
     distance = Math.sqrt(Math.pow(distanceA, 2) + Math.pow(distanceB, 2));
     return distance;
   }
 
   // method to check if breeding is possible
   // if distance between cats is more than 3 - it is not possible
-  public boolean breedingPossible(Cat otherCat)
+  private boolean breedingPossible(Cat otherCat)
   {
-    if ((distanceToCat(otherCat) > 3) || (isMale && otherCat.isMale)
-                                      || (!isMale && !otherCat.isMale))
+    if ((distanceToCat(otherCat) > 3) || (isMale == otherCat.isMale))
       return false;
     else
       return true;
