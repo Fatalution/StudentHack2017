@@ -77,7 +77,7 @@ public class Cat
     // or kill other cat if this one is stronger
     if(otherCat.getStrength() > strength)
       killCat(otherCat);
-    else if(otherCat.getStrength < strength)
+    else if(otherCat.getStrength() < strength)
       killCat(this);
     else
     {
