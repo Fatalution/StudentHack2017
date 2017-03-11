@@ -8,6 +8,8 @@ public class Game
 
   private int mapCountDown = 3;
 
+  private GameGUI window;
+
   //cats array
   private Cat[] catArray = new Cat[100];
 
@@ -20,6 +22,8 @@ public class Game
     catArray[0] = new Cat(0, 1, null, true, map, 1, 1);
     catArray[1] = new Cat(1, 1, null, true, map, 1, 3);
     System.out.println(map);
+    window = new GameGUI();
+    window.setVisible(true);
   }
 
   // main game loop
@@ -29,6 +33,7 @@ public class Game
     while(true)
     {
       // fixing the ArrayIndexOutOfBoundsException error
+      window.update();
       if (numberOfCats == catArray.length)
         break;
 

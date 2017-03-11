@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 public class GameGUI extends JFrame
 {
   Game game;
-  Image image;
+  private Image cat;
+  JLabel[] cat = new JLabel[0];
 
   public GameGUI()
   {
@@ -22,14 +23,15 @@ public class GameGUI extends JFrame
     gamePanel.setLayout(null);
     gamePanel.setBounds(0,0,500,500);
     contents.add(gamePanel, BorderLayout.CENTER);
-    BufferedImage cat = null;
+    BufferedImage tempCat = null;
     try {
-      cat = ImageIO.read(new File("cat.png"));
+      tempCat = ImageIO.read(new File("cat.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
-    Image image =  cat.getScaledInstance(100, 50, Image.SCALE_DEFAULT);
-    // JLabel imageLabel = new JLabel(new ImageIcon(image));
+    cat =  tempCat.getScaledInstance(100, 50, Image.SCALE_DEFAULT);
+    
+    /*
     for (int i = 1; i < 10; i++)
     {
       int x = i*10;
@@ -38,7 +40,17 @@ public class GameGUI extends JFrame
       gamePanel.add(temp);
 
     }
-
+    */
     pack();
+  }
+
+  public Image catImage()
+  {
+    return cat;
+  }
+
+  public void update()
+  {
+    
   }
 }

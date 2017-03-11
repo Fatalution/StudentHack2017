@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Cat
 {
   // int to track the age of a cat
@@ -14,6 +16,7 @@ public class Cat
   private final int x, y;
   // the map that the cat is on
   private final Map map;
+  private Image catImage;
 
   // constructor for initialising variables
   public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
@@ -30,6 +33,8 @@ public class Cat
 
     map.addObject(x, y, 1);
 
+    catImage = GameGUI.catImage();
+
   }// constructor 1
 
   public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
@@ -45,6 +50,8 @@ public class Cat
     y = givenY;
 
     map.addObject(x, y, 1);
+
+    
 
   }// constructor 2
 
