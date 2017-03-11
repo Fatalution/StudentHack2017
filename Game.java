@@ -19,8 +19,8 @@ public class Game
   {
     map = new Map(20);
     //creating first 2 cats
-    catArray[0] = new Cat(0, 1, null, true, map, 1, 1);
-    catArray[1] = new Cat(1, 1, null, true, map, 1, 3);
+    catArray[0] = new Cat(0, 1, true, map, 1, 1);
+    catArray[1] = new Cat(1, 1, true, map, 1, 3);
     System.out.println(map);
     window = new GameGUI(this);
     window.setVisible(true);
@@ -98,7 +98,7 @@ public class Game
     numberOfCats --;
   }
 
-  public Cat[] getCats(){
-    return catArray;
+  public Map getMap(){
+    return map;
   }
 }

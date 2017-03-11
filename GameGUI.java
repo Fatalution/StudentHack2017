@@ -50,14 +50,46 @@ public class GameGUI extends JFrame
     return cat;
   }
 
+
+  private JLabel[] toDelete = new JLabel[0];
   public void update()
   {
-    Cat[] cats = game.getCats();
+    /*Cat[] cats = game.getCats();
     for (Cat cat : cats)
     {
       JLabel catLabel = new JLabel(new ImageIcon(cat.getImage()));
       catLabel.setBounds(cat.getX(), cat.getY(), 100, 100);
       gamePanel.add(catLabel);
     }
+    */
+
+    String map = game.getMap();
+
+    String[] mapArray = map.split("\n");
+
+    int mapSize = map.getSize();
+
+    for(JLabel label : toDelete)
+    {
+      gamePanel.remove(label);
+      label = null;
+    }
+
+    for(int y=0; y < mapSize; y++)
+      for(int x = 0; x < mapSize; x++)
+      {
+        if (mapArray[x][y] == "1")
+        {
+          JLabel catLabel = new JLabel(new ImageIcon(cat.getImage()));
+          catLabel.setBounds(x*5, y*5, 100, 100);
+          gamePanel.add(catLabel);
+
+          JLabel[] temp = new JLabel[toDelete.length];
+          for(int i = 0; i < toDelete.length; i++)
+            temp[i] = toDelete[i];
+          temp[toDelete.length] = catLabel;
+          toDelete = temp;
+        }   
+      }
   }
 }
