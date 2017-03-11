@@ -84,18 +84,31 @@ public class Cat
     else
       newGender = false;
 
-    // generates x and y between the two parent cats
-    int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
-       * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
+    // check if breeding is possible using the boolean value
+    if (breedingPossible(otherCat))
+    {
+      // generates x and y between the two parent cats
+      int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
+         * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
 
-    int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
-       * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
+      int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
+         * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
 
-    // returns new cat
-    return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
+      //printing breeding info
+      System.out.println("Cat " + id + " breeds with "
+                                            + otherCat.id + "!");
+      // returns new cat
+      return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
+    }
+    else
+    {
+      System.out.println("Can not breed, too far!");
+      return null;
+    }
   }
 
   // method to find distance between two points on the map
+  // pythagoras theorem
   public double distanceToCat(Cat otherCat)
   {
     double distance = 0;
@@ -106,6 +119,7 @@ public class Cat
   }
 
   // method to check if breeding is possible
+  // if distance between cats is more than 3 - it is not possible
   public boolean breedingPossible(Cat otherCat)
   {
     if (distanceToCat(otherCat) > 3)
