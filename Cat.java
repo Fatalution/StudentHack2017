@@ -3,13 +3,13 @@ public class Cat extends Animal
  
   public Cat(int givenId, int givenAge, Map givenMap)
   {
-    super(givenId, givenAge, givenMap);
+    super(givenId, givenAge, givenMap, GameGUI.catImage());
   }// constructor
  
   public Cat(int givenId, int givenAge, boolean givenGender,
                                           Map givenMap, int givenX, int givenY)
   {
-    super(givenId, givenAge, givenGender, givenMap, givenX, givenY);
+    super(givenId, givenAge, givenGender, givenMap, givenX, givenY, GameGUI.catImage());
   }// constructor
  
   // method for breeding two cats
