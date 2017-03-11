@@ -23,7 +23,7 @@ public class Cat
 
   private int calculateStrength()
   {
-
+    
   }// calculateStrength
 
   public Cat breedWith(Cat otherCat, int givenId)
