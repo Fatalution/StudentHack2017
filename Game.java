@@ -71,17 +71,12 @@ public class Game
     }
 
     // getting new cat
-    catArray[numberOfCats]
-        = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
 
-    // checking if breeding was possible
-    if (!catArray[firstCatID].breedingPossible(catArray[secondCatID]))
-      return;
-    else
-      numberOfCats++;
+    catArray[numberOfCats] = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
+    numberOfCats++;
 
     // printing out the number of cats
-    System.out.println(numberOfCats + " number of cats");
+    System.out.println(firstCatID + " with " + secondCatID + " = " + numberOfCats);
   }
 
   private void makeKill(Cat[] catArray)

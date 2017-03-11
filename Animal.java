@@ -1,4 +1,3 @@
-import java.awt.Image;
 public class Animal
 {
   // int to track the age of a cat
@@ -13,12 +12,10 @@ public class Animal
   private int x, y;
   // the map that the cat is on
   private final Map map;
-  private Image image;
 
   // constructor for initialising variables
-  public Animal(int givenId, int givenAge, Map givenMap, Image animalImage)
+  public Animal(int givenId, int givenAge, Map givenMap)
   {
-    image = animalImage;
     if(Math.random() < 0.5)
       isMale = true;
     else
@@ -43,7 +40,7 @@ public class Animal
   }// constructor 1
 
   public Animal(int givenId, int givenAge, boolean givenGender,
-                                          Map givenMap, int givenX, int givenY, Image animalImage)
+                                          Map givenMap, int givenX, int givenY)
   {
     isMale = givenGender;
     id = givenId;
@@ -52,7 +49,6 @@ public class Animal
     map = givenMap;
     x = givenX;
     y = givenY;
-    image = animalImage;
 
     map.addObject(x, y, 1);
 

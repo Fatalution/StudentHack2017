@@ -14,7 +14,7 @@ public class GameGUI extends JFrame
   {
     game = requiredGame;
     setTitle("Cat spawner");
-    super.setPreferredSize(new Dimension(500,500));  
+    super.setPreferredSize(new Dimension(500,500));
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBackground(Color.BLACK);
@@ -31,7 +31,7 @@ public class GameGUI extends JFrame
       e.printStackTrace();
     }
     cat =  tempCat.getScaledInstance(100, 50, Image.SCALE_DEFAULT);
-    
+
     /*
     for (int i = 1; i < 10; i++)
     {
@@ -63,9 +63,9 @@ public class GameGUI extends JFrame
     }
     */
 
-    String map = game.getMap();
+    Map map = game.getMap();
 
-    String[] mapArray = map.split("\n");
+    int[][] mapArray = map.getMapArray();
 
     int mapSize = map.getSize();
 
@@ -78,18 +78,18 @@ public class GameGUI extends JFrame
     for(int y=0; y < mapSize; y++)
       for(int x = 0; x < mapSize; x++)
       {
-        if (mapArray[x][y] == "1")
+        if (mapArray[x][y] == 1)
         {
-          JLabel catLabel = new JLabel(new ImageIcon(cat.getImage()));
+          JLabel catLabel = new JLabel(new ImageIcon(catImage()));
           catLabel.setBounds(x*5, y*5, 100, 100);
           gamePanel.add(catLabel);
 
-          JLabel[] temp = new JLabel[toDelete.length];
+          JLabel[] temp = new JLabel[toDelete.length + 1];
           for(int i = 0; i < toDelete.length; i++)
             temp[i] = toDelete[i];
           temp[toDelete.length] = catLabel;
           toDelete = temp;
-        }   
+        }
       }
   }
 }

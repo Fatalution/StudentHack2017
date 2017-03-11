@@ -73,4 +73,9 @@ public class Map
     return map[x][y];
   }
 
+  public int[][] getMapArray()
+  {
+    return this.map;
+  }
+
 }// class
