@@ -52,13 +52,14 @@ public class Game
     numberOfCats++;
 
     //printing breeding info
-    System.out.println("Cat " + firstCatID + " with " + secondCatID + " equals " + numberOfCats);
+    System.out.println("Cat " + firstCatID + " breeded with " + secondCatID
+                     + " will result in " + numberOfCats + " number of cats");
   }
 
   private void makeKill(Cat[] catArray)
   {
     int randomCatID = (int) (Math.random() * numberOfCats);
-    System.out.println("Cat " + randomCatID + " has died");
+    System.out.println("Cat number " + randomCatID + " has died");
 
     catArray[randomCatID] = null;
 
