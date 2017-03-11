@@ -24,6 +24,7 @@ public class GameGUI extends JFrame
     gamePanel.setLayout(null);
     gamePanel.setBounds(0,0,500,500);
     contents.add(gamePanel, BorderLayout.CENTER);
+
     BufferedImage tempCat = null;
     try {
       tempCat = ImageIO.read(new File("cat.png"));
