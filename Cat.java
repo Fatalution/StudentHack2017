@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import javax.swing.*;
 
 public class Cat
@@ -39,42 +40,30 @@ public class Cat
 
   public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
                                         Map givenMap, int givenX, int givenY)
+=======
+public class Cat extends Animal
+{
+
+  public Cat(int givenId, int givenAge, Map givenMap)
+>>>>>>> cffc14afda8bf208901432a9cfbc93f9938fe3f9
   {
-    isMale = givenGender;
-    id = givenId;
-    age = givenAge;
-    type = givenType;
-    strength = calculateStrength();
-    map = givenMap;
-    x = givenX;
-    y = givenY;
+    super(givenId, givenAge, givenMap);
+  }// constructor
 
-    map.addObject(x, y, 1);
-
+<<<<<<< HEAD
     
 
   }// constructor 2
 
   // method to calculate strength
   private int calculateStrength()
+=======
+  public Cat(int givenId, int givenAge, boolean givenGender,
+                                          Map givenMap, int givenX, int givenY)
+>>>>>>> cffc14afda8bf208901432a9cfbc93f9938fe3f9
   {
-    // variable to calculate strength
-    int tempStrength;
-
-    if(isMale)
-      tempStrength = 100;
-    else
-      tempStrength = 50;
-
-    tempStrength -= age * 5;
-
-    return tempStrength;
-  }// calculateStrength
-
-  private int getStrength()
-  {
-    return strength;
-  }// getStrength
+    super(givenId, givenAge, givenGender, givenMap, givenX, givenY);
+  }// constructor
 
   // method for breeding two cats
   // returns new cat
@@ -94,24 +83,19 @@ public class Cat
     // check if breeding is possible using the boolean value
     if (breedingPossible(otherCat))
     {
+
       // generates x and y between the two parent cats
-      int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
-         * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
+      int newX =
 
-      int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
-         * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
+      int newY =
 
-      //printing breeding info
-      System.out.println("Cat " + id + " breeds with "
-                                            + otherCat.id + "!");
+
       // returns new cat
-      return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
+      return new Cat(newId, 0, newGender, getMap(), newX, newY);
     }
     else
-    {
-      System.out.println("Can not breed, too far!");
       return null;
-    }
+
   }
 
   // method to find distance between two points on the map
@@ -119,8 +103,8 @@ public class Cat
   public double distanceToCat(Cat otherCat)
   {
     double distance = 0;
-    int distanceA = x - otherCat.x;
-    int distanceB = y - otherCat.y;
+    int distanceA = getX() - otherCat.getX();
+    int distanceB = getY() - otherCat.getY();
     distance = Math.sqrt(Math.pow(distanceA, 2) + Math.pow(distanceB, 2));
     return distance;
   }
@@ -129,31 +113,21 @@ public class Cat
   // if distance between cats is more than 3 - it is not possible
   public boolean breedingPossible(Cat otherCat)
   {
-    if (distanceToCat(otherCat) > 3)
+    if ((distanceToCat(otherCat) > 3) || (isMale && otherCat.isMale)
+                                      || (!isMale && !otherCat.isMale))
       return false;
     else
       return true;
   }
-  // method for adding a year for a cat
-  public void addYear()
-  {
-    age++;
-  }// addYear
-
-  // method for getting the gender of a cat
-  private boolean checkIfMale()
-  {
-    return isMale;
-  }// getGender
 
   // method for fighting with other cats, sets dead cat to null
   public void fightWith(Cat otherCat)
   {
     // if other cat's strength is greater, kill this cat
     // or kill other cat if this one is stronger
-    if(otherCat.getStrength() > strength)
+    if(otherCat.getStrength() > getStrength())
       killCat(otherCat);
-    else if(otherCat.getStrength() < strength)
+    else if(otherCat.getStrength() < getStrength())
       killCat(this);
     else
     {
@@ -166,25 +140,11 @@ public class Cat
     }// else
   }// fightWith
 
-  private int getX()
-  {
-    return x;
-  }
-
-  private int getY()
-  {
-    return y;
-  }
 
   private void killCat(Cat catToKill)
   {
     catToKill = null;
+    getMap().removeObject(catToKill.getX(), catToKill.getY());
   }//killCat
-
-  // toString method
-  public String toString()
-  {
-    return "Cat (" + "id = " + id + ", type = " + type + ", age = " + age + ")";
-  }// toString
 
 }// class
