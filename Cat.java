@@ -28,7 +28,9 @@ public class Cat
     x = (int) (Math.random() * map.getSize());
     y = (int) (Math.random() * map.getSize());
 
-  }// constructor
+    map.addObject(x, y, 1);
+
+  }// constructor 1
 
   public Cat(int givenId, int givenAge, String givenType, boolean givenGender,
                                         Map givenMap, int givenX, int givenY)
@@ -42,7 +44,9 @@ public class Cat
     x = givenX;
     y = givenY;
 
-  }// constructor
+    map.addObject(x, y, 1);
+
+  }// constructor 2
 
   // method to calculate strength
   private int calculateStrength()
@@ -69,6 +73,7 @@ public class Cat
   // returns new cat
   public Cat breedWith(Cat otherCat, int givenId)
   {
+    // sets new values to
     int newId = givenId;
     boolean newGender;
 
@@ -79,7 +84,6 @@ public class Cat
 
     int  newX = (int) (Math.random() * Math.max(x, otherCat.getX()));
     int newY = (int) (Math.random() * Math.max(y, otherCat.getY()));
-
 
     return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
   }
