@@ -1,21 +1,30 @@
+import java.util.concurrent.TimeUnit;
+
+
 public class Game
 {
   //storing number of cats
-  public int numberOfCats = 2;
+  private int numberOfCats = 2;
+
+  private int mapCountDown = 3;
 
   //cats array
-  public Cat[] catArray = new Cat[100];
+  private Cat[] catArray = new Cat[100];
+
+  private Map map;
 
   public Game()
   {
-    Map map = new Map(100);
+    map = new Map(20);
     //creating first 2 cats
     catArray[0] = new Cat(0, 1, null, true, map, 1, 1);
     catArray[1] = new Cat(1, 1, null, true, map, 1, 3);
+    System.out.println(map);
   }
 
-  //main game loop
-  public void runGame()
+  // main game loop
+  // throws an exception because of 1 sec delay
+  public void runGame() throws InterruptedException
   {
     while(true)
     {
@@ -23,15 +32,24 @@ public class Game
       if (numberOfCats == catArray.length)
         break;
 
+      // deciding on next action
       if(Math.random() < 0.2 && numberOfCats > 2)
       {
         makeKill(catArray);
       }
-
       else
       {
         makeBreeding(catArray);
       }
+
+      mapCountDown--;
+      if (mapCountDown == 0)
+      {
+        mapCountDown = 3;
+        System.out.println(map);
+      }
+      // wait for 1 second
+      TimeUnit.SECONDS.sleep(1);
     }
   }
 
