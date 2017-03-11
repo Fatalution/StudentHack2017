@@ -5,7 +5,7 @@ public class Animal
   // variable for ID
   private final int id;
   // class constants to determine cat's gender
-  private final boolean isMale;
+  public final boolean isMale;
   // integer to hold the strength of a cat
   private int strength;
   // integers to hold x and y variables of the cat
@@ -14,15 +14,26 @@ public class Animal
   private final Map map;
 
   // constructor for initialising variables
-  public Animal(int givenId, int givenAge, boolean givenGender, Map givenMap)
+  public Animal(int givenId, int givenAge, Map givenMap)
   {
-    isMale = givenGender;
+    if(Math.random() < 0.5)
+      isMale = true;
+    else
+      isMale = false;
+
     id = givenId;
     age = givenAge;
     strength = calculateStrength();
     map = givenMap;
+
     x = (int) (Math.random() * map.getSize());
     y = (int) (Math.random() * map.getSize());
+
+    while(map.getCell(x,y) != 0)
+    {
+      x = (int) (Math.random() * map.getSize());
+      y = (int) (Math.random() * map.getSize());
+    }
 
     map.addObject(x, y, 1);
 
@@ -78,8 +89,15 @@ public class Animal
       newGender = false;
 
     // generates x and y between the two parent cats
-    int  newX = Math.min(x, otherAnimal.getX()) + (int)(Math.random() * ((Math.max(x, otherAnimal.getX()) - Math.min(x, otherAnimal.getX())) + 1));
+
+    int newX = Math.min(x, otherAnimal.getX()) + (int)(Math.random() * ((Math.max(x, otherAnimal.getX()) - Math.min(x, otherAnimal.getX())) + 1));
     int newY = Math.min(y, otherAnimal.getY()) + (int)(Math.random() * ((Math.max(y, otherAnimal.getY()) - Math.min(y, otherAnimal.getY())) + 1));
+
+    while(map.getCell(x,y) != 0)
+    {
+      newX = Math.min(x, otherAnimal.getX()) + (int)(Math.random() * ((Math.max(x, otherAnimal.getX()) - Math.min(x, otherAnimal.getX())) + 1));
+      newY = Math.min(y, otherAnimal.getY()) + (int)(Math.random() * ((Math.max(y, otherAnimal.getY()) - Math.min(y, otherAnimal.getY())) + 1));
+    }
 
     // returns new cat
     return new Animal(givenId, 0, newGender, map, newX, newY);

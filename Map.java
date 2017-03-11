@@ -7,7 +7,7 @@ public class Map
   // String array to represent the map
   private int[][] map;
   // class constant to hold empty cell value
-  private final int EMPTY = 0;
+  public final int EMPTY = 0;
 
   // constructor for maps
   public Map(int givenSize)
@@ -66,6 +66,11 @@ public class Map
   public int getSize()
   {
     return size;
+  }
+
+  public int getCell(int x, int y)
+  {
+    return map[x][y];
   }
 
 }// class

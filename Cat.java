@@ -1,9 +1,9 @@
 public class Cat extends Animal
 {
 
-  public Cat(int givenId, int givenAge, boolean givenGender, Map givenMap)
+  public Cat(int givenId, int givenAge, Map givenMap)
   {
-    super(givenId, givenAge, givenGender, givenMap);
+    super(givenId, givenAge, givenMap);
   }// constructor
 
   public Cat(int givenId, int givenAge, boolean givenGender,
@@ -30,15 +30,15 @@ public class Cat extends Animal
     // check if breeding is possible using the boolean value
     if (breedingPossible(otherCat))
     {
-      // generates x and y between the two parent cats
-      int newX = Math.min(x, otherCat.getX()) + (int)(Math.random()
-         * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
 
-      int newY = Math.min(y, otherCat.getY()) + (int)(Math.random()
-         * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
+      // generates x and y between the two parent cats
+      int newX =
+
+      int newY =
+
 
       // returns new cat
-      return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
+      return new Cat(newId, 0, newGender, getMap(), newX, newY);
     }
     else
       return null;
@@ -50,8 +50,8 @@ public class Cat extends Animal
   public double distanceToCat(Cat otherCat)
   {
     double distance = 0;
-    int distanceA = x - otherCat.x;
-    int distanceB = y - otherCat.y;
+    int distanceA = getX() - otherCat.getX();
+    int distanceB = getY() - otherCat.getY();
     distance = Math.sqrt(Math.pow(distanceA, 2) + Math.pow(distanceB, 2));
     return distance;
   }
@@ -60,7 +60,8 @@ public class Cat extends Animal
   // if distance between cats is more than 3 - it is not possible
   public boolean breedingPossible(Cat otherCat)
   {
-    if (distanceToCat(otherCat) > 3)
+    if ((distanceToCat(otherCat) > 3) || (isMale && otherCat.isMale)
+                                      || (!isMale && !otherCat.isMale))
       return false;
     else
       return true;
