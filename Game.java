@@ -52,8 +52,9 @@ public class Game
     numberOfCats++;
 
     //printing breeding info
-    System.out.println("Cat " + firstCatID + " breeded with " + secondCatID
-                     + " will result in " + numberOfCats + " number of cats");
+    System.out.println("Cat " + firstCatID + " breeds with "
+                                           + secondCatID + "!");
+    System.out.println(numberOfCats + " number of cats");
   }
 
   private void makeKill(Cat[] catArray)
