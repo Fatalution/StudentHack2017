@@ -48,12 +48,16 @@ public class Game
     }
 
     // getting new cat
-    catArray[numberOfCats] = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
+    catArray[numberOfCats]
+        = catArray[firstCatID].breedWith(catArray[secondCatID], numberOfCats);
+
+    // checking if breeding was possible
     if (!catArray[firstCatID].breedingPossible(catArray[secondCatID]))
       return;
     else
       numberOfCats++;
-    // print out the number of cats
+
+    // printing out the number of cats
     System.out.println(numberOfCats + " number of cats");
   }
 
