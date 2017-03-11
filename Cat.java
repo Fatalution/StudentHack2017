@@ -12,7 +12,7 @@ public class Cat
   private int strength;
 
   // constructor for initialising variables
-  private Cat(int givenId, int givenAge, String givenType, boolean givenGender)
+  public Cat(int givenId, int givenAge, String givenType, boolean givenGender)
   {
     isMale = givenGender;
     id = givenId;
@@ -23,7 +23,7 @@ public class Cat
 
   private int calculateStrength()
   {
-    
+    return 0;
   }// calculateStrength
 
   public Cat breedWith(Cat otherCat, int givenId)
