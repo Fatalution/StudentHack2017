@@ -78,6 +78,6 @@ public class Cat extends Animal
   public void killCat()
   {
     getMap().removeObject(getX(), getY());
-  }//killCat
+  }//killCats
 
 }// class

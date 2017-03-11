@@ -37,8 +37,10 @@ public class Game
       if (numberOfCats == catArray.length)
         break;
 
+      makeMove();
+
       // deciding on next action
-      if(Math.random() < 0.9 && numberOfCats > 2)
+      if(Math.random() < 0.9 && numberOfCats > 3)
       {
         makeKill(catArray);
       }
@@ -55,7 +57,7 @@ public class Game
     //    System.out.println(map);
       }
       // wait for 1 second
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.SECONDS.sleep(3);
     }
   }
 
@@ -85,19 +87,27 @@ public class Game
     int randomCatID = (int) (Math.random() * numberOfCats);
     System.out.println("Cat number " + randomCatID + " has died");
 
+    catArray[randomCatID].killCat();
+    catArray[randomCatID] = null;
 
     for(int index = randomCatID; index < numberOfCats; index++)
     {
       catArray[index] = catArray[index + 1];
     }
     numberOfCats --;
-
-    catArray[randomCatID].killCat();
-    catArray[randomCatID] = null;
-
   }
 
-  public Map getMap(){
+  private void makeMove()
+  {
+    for(int index = 0; index < numberOfCats; index++)
+      {
+        catArray[index].move();
+      }
+  }
+
+
+  public Map getMap()
+  {
     return map;
   }
 }

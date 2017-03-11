@@ -54,7 +54,6 @@ public class GameGUI extends JFrame
 
     for(JLabel label : toDelete)
     {
-      System.out.println("removed");
       label.setVisible(false);
       gamePanel.remove(label);
       gamePanel.revalidate();
@@ -73,13 +72,13 @@ public class GameGUI extends JFrame
           catLabel.setBounds(x*30, y*30, 100, 100);
           gamePanel.add(catLabel);
 
-          
+
           JLabel[] temp = new JLabel[toDelete.length + 1];
           for(int i = 0; i < toDelete.length; i++)
             temp[i] = toDelete[i];
           temp[toDelete.length] = catLabel;
           toDelete = temp;
-          
+
         }
       }
       revalidate();
