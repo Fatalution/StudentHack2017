@@ -38,7 +38,7 @@ public class Game
         break;
 
       // deciding on next action
-      if(Math.random() < 0.2 && numberOfCats > 2)
+      if(Math.random() < 0.9 && numberOfCats > 2)
       {
         makeKill(catArray);
       }
