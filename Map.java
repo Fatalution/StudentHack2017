@@ -6,6 +6,8 @@ public class Map
   private final int size;
   // String array to represent the map
   private int[][] map;
+  // class constant to hold empty cell value
+  private final int EMPTY = 0;
 
   // constructor for maps
   public Map(int givenSize)
@@ -19,17 +21,19 @@ public class Map
   {
     map = new int[size][size];
 
+    // sets all spaces to 0
     for(int x = 0; x < size; x++)
       for(int y = 0; y < size; y++)
-        map[x][y] = 0;
+        map[x][y] = EMPTY;
   }
 
-  // sets the map coordinates of new object to false
+  // sets the map coordinates of new object to the id of an object
   public void addObject(int x, int y, int givenId)
   {
     map[x][y] = givenId;
   }// addObject
 
+  // toString method
   public String toString()
   {
     String mapString = "";
@@ -41,7 +45,7 @@ public class Map
         if(map[x][y] > 0)
           mapString += map[x][y];
         else
-          mapString += " ";
+          mapString += "-";
       }// for
 
       mapString += "\n";
@@ -51,6 +55,7 @@ public class Map
     return mapString;
   }// toString
 
+  // accessor method
   public int getSize()
   {
     return size;

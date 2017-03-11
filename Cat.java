@@ -73,18 +73,22 @@ public class Cat
   // returns new cat
   public Cat breedWith(Cat otherCat, int givenId)
   {
-    // sets new values to
+    // sets new id to given one
     int newId = givenId;
+    // variable to store new gender of new cat
     boolean newGender;
 
+    // gender is 50/50 male or female
     if(Math.random() < 0.5)
       newGender = true;
     else
       newGender = false;
 
-    int  newX = (int) (Math.random() * Math.max(x, otherCat.getX()));
-    int newY = (int) (Math.random() * Math.max(y, otherCat.getY()));
+    // generates x and y between the two parent cats
+    int  newX = Math.min(x, otherCat.getX()) + (int)(Math.random() * ((Math.max(x, otherCat.getX()) - Math.min(x, otherCat.getX())) + 1));
+    int newY = Math.min(y, otherCat.getY()) + (int)(Math.random() * ((Math.max(y, otherCat.getY()) - Math.min(y, otherCat.getY())) + 1));
 
+    // returns new cat
     return new Cat(newId, 0, "Siberian", newGender, map, newX, newY);
   }
 
